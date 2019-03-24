@@ -17,14 +17,15 @@ class TopButtons : UIView  {
     var playButton = UIButton()
     var stopButton = UIButton()
     
-    var recordTrackButtonImage = UIImage()
-    var redRecordTrackImage = UIImage()
-    
-    var recordPadButtonImage = UIImage()
+    var redRecordTrackButtonImage = UIImage()
     var redRecordPadButtonImage = UIImage()
-    
-    var playButtonImage = UIImage()
     var greenPlayButtonImage = UIImage()
+    
+    var recordTrackButtonImage = UIImage()
+
+    var recordPadButtonImage = UIImage()
+
+    var playButtonImage = UIImage()
     
     var stopButtonImage = UIImage()
     var imageArray = [UIImage]()
@@ -32,23 +33,23 @@ class TopButtons : UIView  {
     var tempButton = UIButton()
     var tagIndex = 0
     
-    func addImages() {
+    func getImages() -> [UIImage]{
         
         recordTrackButtonImage = UIImage(named: "App Button Icons/recordTrack")!
         recordPadButtonImage = UIImage(named: "App Button Icons/recordPad")!
         playButtonImage = UIImage(named: "App Button Icons/play")!
         stopButtonImage = UIImage(named: "App Button Icons/stop")!
         
-        redRecordTrackImage = UIImage(named: "App Button Icons/redRecordTrack")!
+        redRecordTrackButtonImage = UIImage(named: "App Button Icons/redRecordTrack")!
         redRecordPadButtonImage = UIImage(named: "App Button Icons/redRecordPad")!
-        greenPlayButtonImage = UIImage(named: "App Button Icons/redRecordPad")!
+        greenPlayButtonImage = UIImage(named: "App Button Icons/greenPlay")!
         
         imageArray.append(contentsOf: [recordTrackButtonImage,
                                        recordPadButtonImage,
                                        playButtonImage,
                                        stopButtonImage,
+                                       redRecordTrackButtonImage,
                                        redRecordPadButtonImage,
-                                       redRecordTrackImage,
                                        greenPlayButtonImage])
         
         topButtons.append(contentsOf: [recordTrackButton,
@@ -56,11 +57,13 @@ class TopButtons : UIView  {
                                        playButton,
                                        stopButton])
         
+        return imageArray
+        
     }
     
     func createTopButtons(view: UIView) -> [UIButton] {
         
-        addImages()
+        getImages()
         
         let screenWidth = Int(view.frame.width)
         let screenHeight = Int(view.frame.height)
@@ -86,6 +89,20 @@ class TopButtons : UIView  {
         }
 
         return topButtons
+        
+    }
+    
+    func recordTrackImageColour(isRecording: Bool) {
+        
+        if isRecording {
+            print("color changed!")
+            recordTrackButton.setImage(redRecordTrackButtonImage, for: .normal)
+        } else if !isRecording {
+            recordTrackButton.setImage(recordTrackButtonImage, for: .normal)
+            print("color changed!")
+        }
+        
+        
         
     }
     

@@ -7,12 +7,14 @@
 //
 
 import UIKit
-import AudioKit
-import AVFoundation
+import AudioKit 
+import SwiftyWave
 
 class DrumController: UIViewController {
     
     var topButtons = [UIButton]()
+    var topButtonImages = [UIImage]()
+    
     var trackRecorder: AKNodeRecorder?
     var trackRecording: AKAudioFile?
     var trackPlayer: AKAudioPlayer!
@@ -38,10 +40,14 @@ class DrumController: UIViewController {
     ];
     
     var drumPadButtons = [UIButton]()
-    var players : [AKAudioPlayer]?
     
+    var players : [AKAudioPlayer]?
     var mixer = AKMixer()
-    var engine = AVAudioEngine()
+    
+    var waveView = SwiftyWaveView()
+    
+    var isRecording = false
+    var isPlaying = false
     
     override func viewDidLoad() {
         
@@ -54,6 +60,12 @@ class DrumController: UIViewController {
         
         drumPadButtons = DrumButton().createDrumPadCollection(view: self.view)
         topButtons = TopButtons().createTopButtons(view: self.view)
+        
+//        SoundWaveGenerator().createSoundWave(view: self.view)
+        topButtonImages = TopButtons().getImages()
+        
+        waveView = SwiftyWaveView(frame: CGRect(x: 8, y: view.frame.height/2 - view.frame.height/4 - 32, width: view.frame.width - 16, height: view.frame.height/4))
+        view.addSubview(waveView)
         
     }
     
@@ -99,24 +111,38 @@ class DrumController: UIViewController {
         }   catch {
             print("Track Recorder NOT IN FUNCTION")
         }
-        
+
     }
     
     func recordTrack() {
         
-        do {
-            try trackRecorder?.record()
-            print("recording!")
-        } catch {
-            AKLog("Couldn't record")
+        if !isRecording {
+            
+            do {
+                try trackRecorder?.record()
+                isRecording = true
+                isPlaying = false
+                
+                recordTrackImageColour()
+                playImageColour()
+                
+            } catch {
+                AKLog("Couldn't record")
+            }
+        } else {
+            print("Already recording! ")
         }
         
     }
     
     func recordPad() {
-        //        TODO
-        //        set up function for recording new pad sample.
-        print("Recording Pad!")
+        
+        let shareTrackUrl = URL.init(fileURLWithPath: Bundle.main.path(forResource: "Sound Bank/sample10", ofType: "mp3")!)
+        
+        let activityVC = UIActivityViewController(activityItems: [shareTrackUrl],applicationActivities: nil)
+        activityVC.popoverPresentationController?.sourceView = self.view
+        
+        self.present(activityVC, animated: true, completion: nil)
         
     }
     
@@ -126,7 +152,13 @@ class DrumController: UIViewController {
             do {
                 trackPlayer = try AKAudioPlayer(file: trackRecording!)
                 mixer.connect(input: trackPlayer)
+                
                 trackPlayer.play()
+                isPlaying = true
+                
+                waveView.start()
+                
+                playImageColour()
                 print("Playing track!")
             } catch {
                 print("Nothing to play")
@@ -136,17 +168,23 @@ class DrumController: UIViewController {
     }
     
     func stopTrack() {
+        
+        if  isRecording {
+            trackRecorder?.stop()
+            trackRecording?.exportAsynchronously(name: "recordedTrack",
+                                                 baseDir: .resources,
+                                                 exportFormat: .m4a,
+                                                 callback: { (_, _) in})
+            
+            isRecording = false
+            recordTrackImageColour()
+        }
 
-        if trackRecorder != nil {
-            if  trackRecorder!.isRecording {
-                trackRecorder?.stop()
-                trackRecording?.exportAsynchronously(name: "tempFile.m4a",
-                                                     baseDir: .documents,
-                                                     exportFormat: .m4a,
-                                                     callback: { (_, _) in})
-            } else {
-                trackPlayer.stop()
-            }
+        if isPlaying {
+            trackPlayer.stop()
+            isPlaying = false
+            playImageColour()
+            waveView.stop()
         }
         
     }
@@ -168,6 +206,31 @@ class DrumController: UIViewController {
         }
         
     }
+    
+    func recordTrackImageColour() {
+        
+        if isRecording {
+            topButtons[0].setImage(topButtonImages[4], for: .normal)
+        } else if !isRecording {
+            topButtons[0].setImage(topButtonImages[0], for: .normal)
+        }
+        
+    }
+    
+    func playImageColour() {
+        
+        if isPlaying {
+            topButtons[2].setImage(topButtonImages[6], for: .normal)
+        } else if !isPlaying {
+            topButtons[2].setImage(topButtonImages[2], for: .normal)
+        }
+    }
+    
+    func getDocumentsDirectory() -> URL {
+        let paths = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask)
+        return paths[0]
+    }
+
     
 }
 
