@@ -130,6 +130,8 @@ class DrumController: UIViewController {
                 
                 isPlaying = true
                 
+                waveView.start()
+                
                 trackPlayer.play()
                 playImageColour()
                 print("Playing track!")
