@@ -63,7 +63,7 @@ class TopButtons : UIView  {
     
     func createTopButtons(view: UIView) -> [UIButton] {
         
-        getImages()
+        _ = getImages()
         
         let screenWidth = Int(view.frame.width)
         let screenHeight = Int(view.frame.height)
@@ -89,20 +89,6 @@ class TopButtons : UIView  {
         }
 
         return topButtons
-        
-    }
-    
-    func recordTrackImageColour(isRecording: Bool) {
-        
-        if isRecording {
-            print("color changed!")
-            recordTrackButton.setImage(redRecordTrackButtonImage, for: .normal)
-        } else if !isRecording {
-            recordTrackButton.setImage(recordTrackButtonImage, for: .normal)
-            print("color changed!")
-        }
-        
-        
         
     }
     

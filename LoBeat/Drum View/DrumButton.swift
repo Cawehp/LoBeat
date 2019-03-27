@@ -9,7 +9,7 @@
 import UIKit
 import Foundation
 
-class DrumButton : UIViewController {
+class DrumButton : UIView {
     
     var drumPad = UIButton()
     var drumPadCollection = [UIButton]()
