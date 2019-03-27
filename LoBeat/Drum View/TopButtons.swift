@@ -85,7 +85,6 @@ class TopButtons : UIView  {
             tagIndex += 1
             
             view.addSubview(tempButton)
-            //asds
         }
 
         return topButtons

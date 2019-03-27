@@ -114,7 +114,12 @@ class DrumController: UIViewController {
     func recordPad() {
 //        TODO
 //        set up recording of new samples for pads
-        print("Recording Pad!")
+        let alert = UIAlertController(title: "Record Pad", message: "Ability to record new samples is under construction", preferredStyle: .alert)
+        alert.addAction(UIAlertAction(title: NSLocalizedString("OK", comment: "Default action"), style: .default,
+                                      handler: { _ in
+                                        NSLog("The \"OK\" alert occured.")
+        }))
+        self.present(alert, animated: true, completion: nil)
 
         
     }
@@ -190,7 +195,7 @@ class DrumController: UIViewController {
             self.present(settingsView, animated: true, completion: nil)
             
         } else if sender.tag == 1 {
-            
+            if trackRecording != nil {
             do {
                 try AudioKit.renderToFile(trackPlayer.audioFile, duration: trackRecording!.duration) {
                     self.trackPlayer.play()
@@ -200,8 +205,9 @@ class DrumController: UIViewController {
                 }
                 print("GAWAD: \(trackPlayer.audioFile)")
                 print("RENDERED!")
-            } catch {
+                } catch {
                 print("Didnt render")
+                }
             }
             
             
