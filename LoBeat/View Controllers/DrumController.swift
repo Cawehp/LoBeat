@@ -9,7 +9,6 @@
 import UIKit
 import AudioKit 
 import SwiftyWave
-import AVFoundation
 
 class DrumController: UIViewController {
     
@@ -31,7 +30,8 @@ class DrumController: UIViewController {
     
     var settings = [AVFormatIDKey:kAudioFormatAppleIMA4,
                           AVSampleRateKey:44100.0,
-                          AVNumberOfChannelsKey:2,AVEncoderBitRateKey:12800,
+                          AVNumberOfChannelsKey:2,
+                          AVEncoderBitRateKey:12800,
                           AVLinearPCMBitDepthKey:16,
                           AVEncoderAudioQualityKey:AVAudioQuality.high.rawValue] as [String : Any]
     
@@ -79,8 +79,9 @@ class DrumController: UIViewController {
     func startRecorder() {
         
         do {
-            trackRecording = try AKAudioFile(writeIn: .documents, name: "RecordedTrack", settings: settings)
+            trackRecording = try AKAudioFile()
             try trackRecorder = AKNodeRecorder(node: mixer, file: trackRecording)
+
             print("Track Recorder in function")
         }   catch {
             print("Track Recorder NOT IN FUNCTION")
@@ -94,7 +95,7 @@ class DrumController: UIViewController {
             
             do {
                 try trackRecorder?.record()
-                
+
                 isRecording = true
                 isPlaying = false
 
@@ -143,14 +144,11 @@ class DrumController: UIViewController {
         
         if  isRecording {
             trackRecorder?.stop()
-            trackRecording?.exportAsynchronously(name: "TempTrack",
-                                                 baseDir: .documents,
-                                                 exportFormat: .m4a,
-                                                 fromSample: 44_100,
-                                                 toSample: 44_300,
-                                                 callback: { (_, _) in})
-            
-
+            trackRecorder!.audioFile!.exportAsynchronously(name: "RecordedTrack.m4a",
+                                                           baseDir: .documents,
+                                                           exportFormat: .m4a,
+                                                           callback: { (_, _) in})
+        
             isRecording = false
             recordTrackImageColour()
         }
@@ -192,10 +190,13 @@ class DrumController: UIViewController {
         } else if sender.tag == 1 {
             
             do {
-                try AudioKit.renderToFile(trackRecording!, duration: trackRecording!.duration) {
+                try AudioKit.renderToFile(trackPlayer.audioFile, duration: trackRecording!.duration) {
                     self.trackPlayer.play()
                 }
-                print(trackRecording)
+                try AudioKit.renderToFile(trackPlayer.audioFile, duration: trackRecording!.duration) {
+                    self.trackPlayer.play()
+                }
+                print("GAWAD: \(trackPlayer.audioFile)")
                 print("RENDERED!")
             } catch {
                 print("Didnt render")
