@@ -147,7 +147,6 @@
 				02B42D4F223AE28100E626AE /* Sources */,
 				02B42D50223AE28100E626AE /* Frameworks */,
 				02B42D51223AE28100E626AE /* Resources */,
-				BCD267803D95D7DAB2729BDC /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -207,28 +206,6 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
-		BCD267803D95D7DAB2729BDC /* [CP] Embed Pods Frameworks */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputFileListPaths = (
-			);
-			inputPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-LoBeat/Pods-LoBeat-frameworks.sh",
-				"${BUILT_PRODUCTS_DIR}/SwiftyWave/SwiftyWave.framework",
-			);
-			name = "[CP] Embed Pods Frameworks";
-			outputFileListPaths = (
-			);
-			outputPaths = (
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SwiftyWave.framework",
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-LoBeat/Pods-LoBeat-frameworks.sh\"\n";
-			showEnvVarsInLog = 0;
-		};
 		D29CFC143E103AF3B1480976 /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;

@@ -7,8 +7,7 @@
 //
 
 import UIKit
-import AudioKit 
-import SwiftyWave
+import AudioKit
 
 class DrumController: UIViewController {
     
@@ -25,8 +24,6 @@ class DrumController: UIViewController {
     
     var players : [AKAudioPlayer]?
     var mixer = AKMixer()
-    
-    var waveView = SwiftyWaveView()
     
     var settings = [AVFormatIDKey:kAudioFormatAppleIMA4,
                           AVSampleRateKey:44100.0,
@@ -53,8 +50,6 @@ class DrumController: UIViewController {
         shareSettingsButtons = SettingsShareButtons().createSettingsShareButtons(view: self.view)
         topButtonImages = TopButtons().getImages()
         
-        waveView = SwiftyWaveView(frame: CGRect(x: 8, y: view.frame.height/2 - view.frame.height/4 - 32, width: view.frame.width - 16, height: view.frame.height/4))
-        view.addSubview(waveView)
         
     }
     
@@ -135,8 +130,6 @@ class DrumController: UIViewController {
                 
                 isPlaying = true
                 
-                waveView.start()
-                
                 trackPlayer.play()
                 playImageColour()
                 print("Playing track!")
@@ -164,7 +157,6 @@ class DrumController: UIViewController {
             trackPlayer.stop()
             isPlaying = false
             playImageColour()
-            waveView.stop()
         }
         
     }
@@ -197,17 +189,18 @@ class DrumController: UIViewController {
         } else if sender.tag == 1 {
             if trackRecording != nil {
             do {
-                try AudioKit.renderToFile(trackPlayer.audioFile, duration: trackRecording!.duration) {
-                    self.trackPlayer.play()
-                }
-                try AudioKit.renderToFile(trackPlayer.audioFile, duration: trackRecording!.duration) {
-                    self.trackPlayer.play()
-                }
-                print("GAWAD: \(trackPlayer.audioFile)")
+//                try AudioKit.renderToFile(trackPlayer.audioFile, duration: trackRecording!.duration) {
+//                    self.trackPlayer.play()
+//                }
+//                try AudioKit.renderToFile(trackPlayer.audioFile, duration: trackRecording!.duration) {
+//                    self.trackPlayer.play()
+//                }
+                print("LOCATION: \(trackPlayer.audioFile)")
                 print("RENDERED!")
-                } catch {
-                print("Didnt render")
                 }
+//            catch {
+//                print("Didnt render")
+//                }
             }
             
             

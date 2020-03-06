@@ -6,6 +6,5 @@ target 'LoBeat' do
   use_frameworks!
 
   # Pods for LoBeat
-	pod 'AudioKit/Core'
-	pod 'SwiftyWave', '~> 1.1.0'
+	pod 'AudioKit/Core', '~> 4.0'
 end

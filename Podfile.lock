@@ -1,20 +1,16 @@
 PODS:
-  - AudioKit/Core (4.6.1)
-  - SwiftyWave (1.1.0)
+  - AudioKit/Core (4.9.4)
 
 DEPENDENCIES:
-  - AudioKit/Core
-  - SwiftyWave (~> 1.1.0)
+  - AudioKit/Core (~> 4.0)
 
 SPEC REPOS:
-  https://github.com/cocoapods/specs.git:
+  trunk:
     - AudioKit
-    - SwiftyWave
 
 SPEC CHECKSUMS:
-  AudioKit: 76f8f5dbed135967b91b6cc6aa970e3d30226134
-  SwiftyWave: 848e6d774d45c82574757d9f991735380628c36d
+  AudioKit: 2ad2c0c546f53134967e4a381dfd8691b7674093
 
-PODFILE CHECKSUM: 1f81a7e8698702d7bcca41570bbefd9446a6046f
+PODFILE CHECKSUM: 57665688d6dcd32edb98682144129c73a9c79855
 
-COCOAPODS: 1.6.0.beta.2
+COCOAPODS: 1.9.0
