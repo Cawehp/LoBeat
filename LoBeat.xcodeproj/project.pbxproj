@@ -20,6 +20,7 @@
 		02E8C3AB2247E40D008489AA /* RecordPlaybackHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02E8C3AA2247E40D008489AA /* RecordPlaybackHandler.swift */; };
 		02E8C3AF2248494F008489AA /* DrumHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02E8C3AE2248494F008489AA /* DrumHandler.swift */; };
 		02E8C3B122484D80008489AA /* SettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02E8C3B022484D80008489AA /* SettingsViewController.swift */; };
+		02EBD52324140C74007F6A76 /* UIButtonExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02EBD52224140C74007F6A76 /* UIButtonExtension.swift */; };
 		6E2AAA77211EBF3546CB50EE /* Pods_LoBeat.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D2481C24861A66CB1CA52E3C /* Pods_LoBeat.framework */; };
 /* End PBXBuildFile section */
 
@@ -39,6 +40,7 @@
 		02E8C3AA2247E40D008489AA /* RecordPlaybackHandler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecordPlaybackHandler.swift; sourceTree = "<group>"; };
 		02E8C3AE2248494F008489AA /* DrumHandler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DrumHandler.swift; sourceTree = "<group>"; };
 		02E8C3B022484D80008489AA /* SettingsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsViewController.swift; sourceTree = "<group>"; };
+		02EBD52224140C74007F6A76 /* UIButtonExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIButtonExtension.swift; sourceTree = "<group>"; };
 		30EDC5BBF985A5B6C9ED67B7 /* Pods-LoBeat.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-LoBeat.release.xcconfig"; path = "Target Support Files/Pods-LoBeat/Pods-LoBeat.release.xcconfig"; sourceTree = "<group>"; };
 		3ACB432BFA000586ABA9B601 /* Pods-LoBeat.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-LoBeat.debug.xcconfig"; path = "Target Support Files/Pods-LoBeat/Pods-LoBeat.debug.xcconfig"; sourceTree = "<group>"; };
 		D2481C24861A66CB1CA52E3C /* Pods_LoBeat.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_LoBeat.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -77,6 +79,7 @@
 		02B42D55223AE28100E626AE /* LoBeat */ = {
 			isa = PBXGroup;
 			children = (
+				02EBD52124140C43007F6A76 /* Animation */,
 				02E7E82922495A6B00A30F32 /* View Controllers */,
 				02E8C3AD224848D5008489AA /* Drum Handlers */,
 				02E8C3AC22484895008489AA /* Drum View */,
@@ -117,6 +120,14 @@
 				02E8C3AE2248494F008489AA /* DrumHandler.swift */,
 			);
 			path = "Drum Handlers";
+			sourceTree = "<group>";
+		};
+		02EBD52124140C43007F6A76 /* Animation */ = {
+			isa = PBXGroup;
+			children = (
+				02EBD52224140C74007F6A76 /* UIButtonExtension.swift */,
+			);
+			path = Animation;
 			sourceTree = "<group>";
 		};
 		98CD163E59094A79B442AFC3 /* Frameworks */ = {
@@ -240,6 +251,7 @@
 				02B42D59223AE28100E626AE /* DrumController.swift in Sources */,
 				02E8C3B122484D80008489AA /* SettingsViewController.swift in Sources */,
 				02B42D6F223AE42300E626AE /* TopButtons.swift in Sources */,
+				02EBD52324140C74007F6A76 /* UIButtonExtension.swift in Sources */,
 				02B42D57223AE28100E626AE /* AppDelegate.swift in Sources */,
 				02E8C3AB2247E40D008489AA /* RecordPlaybackHandler.swift in Sources */,
 				02B42D6D223AE3F800E626AE /* DrumButton.swift in Sources */,

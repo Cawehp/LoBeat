@@ -68,6 +68,7 @@ class DrumController: UIViewController {
     @objc func drumButtonTapped (_ sender: UIButton) {
         
         DrumHandler().playSample(senderTag: sender.tag, mixer: mixer)
+        sender.pulsate()
         
     }
     
@@ -165,13 +166,17 @@ class DrumController: UIViewController {
         
         switch sender.tag {
             case 0:
+                sender.pulsate()
                 startRecorder()
                 recordTrack()
             case 1:
+                sender.pulsate()
                 recordPad()
             case 2:
+                sender.pulsate()
                 playTrack()
             case 3:
+                sender.pulsate()
                 stopTrack()
             default:
                 print("default")
@@ -180,6 +185,8 @@ class DrumController: UIViewController {
     }
     
     @objc func shareOptionsPressed(_ sender: UIButton) {
+        
+        sender.pulsate()
         
         if sender.tag == 0 {
             

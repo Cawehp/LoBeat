@@ -49,6 +49,7 @@ class SettingsViewController: UIViewController {
     @objc func backButtonPressed(_ sender: UIButton) {
         
         self.dismiss(animated: true, completion: nil)
+        sender.pulsate()
         
         
     }
